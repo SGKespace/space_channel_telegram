@@ -5,7 +5,6 @@ from pathlib import Path
 def download_file(path_to_save_files, url):
     response = requests.get(url)
     response.raise_for_status()
-
     with path_to_save_files.open('wb') as file:
         file.write(response.content)
 
@@ -23,20 +22,16 @@ def spacex_launch_urls(response):
 
 
 def main():
-    file_name = 'hubble.jpeg'
-    path_to_save_files = Path(f'images/{file_name}')
-    path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-    url = 'https://upload.wikimedia.org/wikipedia/commons/3/3f/HST-SM4.jpeg'
-    # download_file(path_to_save_files, url)
-
     responce = latest_spacex_launch()
-    url = spacex_launch_urls(responce)
-    if not url:
+    urls = spacex_launch_urls(responce)
+    basis_file_name = responce['id'] + "_"
+    if not urls:
         print('Ссылки еще не выложили')
     else:
-        print(url)
-
-
+        for urls_number, url in enumerate(urls):
+            path_to_save_files = Path(f'images/{basis_file_name + str(urls_number)}.jpeg')
+            path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
+            download_file(path_to_save_files, url)
 
 
 if __name__ == '__main__':
