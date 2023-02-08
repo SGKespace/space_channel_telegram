@@ -1,6 +1,7 @@
 import requests
 from pathlib import Path
-
+import urllib
+import os
 
 def fetch_spacex_last_launch():  # Весь код, относящийся к скачиванию фотографий от SpaceX
     api_url = "https://api.spacexdata.com/v5/launches/latest"
@@ -18,8 +19,16 @@ def fetch_spacex_last_launch():  # Весь код, относящийся к с
                 file.write(response.content)
 
 
+def return_extension(url):
+    spliten_url = urllib.parse.urlsplit(url)
+    (file_name, file_extension) = os.path.splitext(spliten_url.path)
+    return file_extension
+
+
 def main():
-    fetch_spacex_last_launch()
+   # fetch_spacex_last_launch()
+   url = "https://example.com/txt/hello%20world.txt?v=9#python"
+   file_extension = return_extension(url)
 
 
 if __name__ == '__main__':
