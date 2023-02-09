@@ -19,7 +19,8 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
             found_date = datetime.strptime(current_response['date'], '%Y-%m-%d  %H:%M:%S')
             formatted_date = f'{found_date.year}/{"{:02d}".format(found_date.month)}/{"{:02d}".format(found_date.day)}'
             urls.append(f'https://api.nasa.gov/EPIC/archive/natural/{formatted_date}/png/{photo_name}.png')
-
+        if len(urls) < count:
+            count = len(urls)
         for url in urls[:count]:
             (file_name, file_extension) = chf.return_pars_name(url)
             path_to_save_files = Path(f'nasa/{file_name}{file_extension}')
