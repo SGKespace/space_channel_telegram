@@ -8,8 +8,9 @@ def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, о
     api_url = f"https://api.spacexdata.com/v5/launches/{launche_id}"
     response = requests.get(api_url)
     response.raise_for_status()
-    urls = response.json()['links']['flickr']['original']
-    basis_file_name = response.json()['id'] + "_"
+    current_response = response.json()
+    urls = current_response['links']['flickr']['original']
+    basis_file_name = current_response['id'] + "_"
     if not urls:
         print('Ссылки еще не выложили')
     else:
