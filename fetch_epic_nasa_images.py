@@ -25,10 +25,7 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
             (file_name, file_extension) = chf.return_pars_name(url)
             path_to_save_files = Path(f'nasa/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-            photo_response = requests.get(url, params=params)
-            photo_response.raise_for_status()
-            with path_to_save_files.open('wb') as file:
-                file.write(photo_response.content)
+            chf.download_files(url, path_to_save_files)
     except requests.exceptions.HTTPError:
         print('Вы ввели неверный токен или сформировался неверный запрос.')
 
