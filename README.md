@@ -54,8 +54,11 @@ python main.py
 
 Пример успешного запуска скрипта:
 Появилась папка NASA c фотографиями
+
 <img width="331" alt="image" src="https://user-images.githubusercontent.com/55636018/217814055-572aa26f-d4d8-4a6b-89ec-154af186eac1.png">
+
 В нужном канале опубликованы изображения
+
 <img width="712" alt="image" src="https://user-images.githubusercontent.com/55636018/217814661-e6bf5de6-3285-4e06-97e5-fed669f0b6d5.png">
 
 
