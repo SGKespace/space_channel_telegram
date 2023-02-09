@@ -6,7 +6,7 @@ import random
 import time
 
 
-def send_telegram_image(bot, chat_id, images_spacex_path, images_nasa_path):
+def send_telegram_images(bot, chat_id, images_spacex_path, images_nasa_path):
     # bot.send_message(chat_id=chat_id, text="лалалалала")
     for root, directory, files in os.walk(images_nasa_path):
         random.shuffle(files)
@@ -29,7 +29,7 @@ def main():
     if not sleep_time:
         sleep_time = str(60 * 60 * 4)  # 4 часа
     while True:
-        send_telegram_image(bot, chat_id, images_spacex_path, images_nasa_path)
+        send_telegram_images(bot, chat_id, images_spacex_path, images_nasa_path)
         time.sleep(sleep_time)
 
 
