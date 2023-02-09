@@ -15,11 +15,12 @@ import time
 def main():
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
-    apod_nasa.fetch_nasa_best_image(nasa_token, 2)  # грузим 2 лучших картинки случайным образом
-    epic_nasa.fetch_nasa_earth(nasa_token, 3)  # грузим 3  картинки
+    count = 2
+    apod_nasa.fetch_nasa_best_image(nasa_token, count)
+    count = 3
+    epic_nasa.fetch_nasa_earth(nasa_token, 3)
     launche_id = ''  # указать id заппуска, если нет, то последний
     fsi.fetch_spacex_last_launch(launche_id)
-
     images_spacex_path = Path('images/')
     images_nasa_path = Path('nasa/')
     TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
