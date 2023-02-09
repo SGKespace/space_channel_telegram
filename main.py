@@ -18,9 +18,8 @@ def main():
     count = 2
     apod_nasa.fetch_nasa_best_images(nasa_token, count)
     count = 3
-    epic_nasa.fetch_nasa_earth(nasa_token, 3)
-    launche_id = ''  # указать id заппуска, если нет, то последний
-    fsi.fetch_spacex_last_launch(launche_id)
+    epic_nasa.fetch_nasa_earth(nasa_token, count)
+    fsi.fetch_spacex_last_launch()
     images_spacex_path = Path('images/')
     images_nasa_path = Path('nasa/')
     telegram_token = os.environ["TELEGRAM_TOKEN"]
@@ -30,7 +29,8 @@ def main():
     if not sleep_time:
         sleep_time = 60 * 60 * 4  # 4 часа
     while True:
-        tb.send_telegram_images(bot, chat_id, images_spacex_path, images_nasa_path)
+        tb.send_telegram_images(bot, chat_id, images_spacex_path)
+        tb.send_telegram_images(bot, chat_id, images_nasa_path)
         time.sleep(sleep_time)
 
 
