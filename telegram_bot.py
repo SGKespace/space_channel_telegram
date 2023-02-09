@@ -14,7 +14,8 @@ def send_telegram_images(bot, chat_id, images_spacex_path, images_nasa_path):
     for root, directory, files in os.walk(images_spacex_path):
         random.shuffle(files)
         for file in files:
-            bot.sendPhoto(chat_id=chat_id, photo=open(f'{images_spacex_path}/{file}', 'rb'),)
+            with open(f'{images_spacex_path}/{file}', 'rb') as fi:
+                bot.sendPhoto(chat_id=chat_id, photo=fi)
 
 
 def main():
