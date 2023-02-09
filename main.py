@@ -16,21 +16,21 @@ def main():
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
     count = 2
-    apod_nasa.fetch_nasa_best_image(nasa_token, count)
+    apod_nasa.fetch_nasa_best_images(nasa_token, count)
     count = 3
     epic_nasa.fetch_nasa_earth(nasa_token, 3)
     launche_id = ''  # указать id заппуска, если нет, то последний
     fsi.fetch_spacex_last_launch(launche_id)
     images_spacex_path = Path('images/')
     images_nasa_path = Path('nasa/')
-    TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
+    telegram_token = os.environ["TELEGRAM_TOKEN"]
     chat_id = os.environ["TELEGRAM_CHAT_ID"]
-    bot = telegram.Bot(token=TELEGRAM_TOKEN)
+    bot = telegram.Bot(token=telegram_token)
     sleep_time = int(os.environ["SLEEP_TIME"])
     if not sleep_time:
         sleep_time = 60 * 60 * 4  # 4 часа
     while True:
-        tb.send_telegram_image(bot, chat_id, images_spacex_path, images_nasa_path)
+        tb.send_telegram_images(bot, chat_id, images_spacex_path, images_nasa_path)
         time.sleep(sleep_time)
 
 
