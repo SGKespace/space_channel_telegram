@@ -4,11 +4,8 @@ import urllib
 import os
 
 
-def fetch_spacex_last_launch(launche_id):  # Весь код, относящийся к скачиванию фотографий от SpaceX
-    if not launche_id:
-        api_url = "https://api.spacexdata.com/v5/launches/latest"
-    else:
-        api_url = f"https://api.spacexdata.com/v5/launches/{launche_id}"
+def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, относящийся к скачиванию фотографий от SpaceX
+    api_url = f"https://api.spacexdata.com/v5/launches/{launche_id}"
     response = requests.get(api_url)
     response.raise_for_status()
     urls = response.json()['links']['flickr']['original']
@@ -26,5 +23,6 @@ def fetch_spacex_last_launch(launche_id):  # Весь код, относящий
 
 
 if __name__ == '__main__':
-    fetch_spacex_last_launch('5eb87d42ffd86e000604b384')
-    print('Тут только функции')
+    # launche_id = '5eb87d42ffd86e000604b384'
+    fetch_spacex_last_launch()
+
