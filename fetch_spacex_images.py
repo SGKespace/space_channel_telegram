@@ -11,16 +11,19 @@ def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, о
     current_response = response.json()
     urls = current_response['links']['flickr']['original']
     basis_file_name = current_response['id'] + "_"
+
     if not urls:
         print('Ссылки еще не выложили')
-    else:
-        for urls_number, url in enumerate(urls):
-            path_to_save_files = Path(f'images/{basis_file_name + str(urls_number)}.jpeg')
-            path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-            photo_response = requests.get(url)
-            photo_response.raise_for_status()
-            with path_to_save_files.open('wb') as file:
-                file.write(photo_response.content)
+        return
+
+    for urls_number, url in enumerate(urls):
+        path_to_save_files = Path(f'images/{basis_file_name + str(urls_number)}.jpeg')
+        path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
+        photo_response = requests.get(url)
+        photo_response.raise_for_status()
+        with path_to_save_files.open('wb') as file:
+            file.write(photo_response.content)
+
 
 
 if __name__ == '__main__':
