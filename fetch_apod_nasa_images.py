@@ -30,4 +30,7 @@ def fetch_nasa_best_image(nasa_token, count):
 
 
 if __name__ == '__main__':
-    print('Тут только функции')
+    load_dotenv()
+    nasa_token = os.environ["NASA_TOKEN"]
+    fetch_nasa_best_image(nasa_token, 2)
+
