@@ -8,4 +8,3 @@ def return_pars_name(url):
 
 
 if __name__ == '__main__':
-    print('Тут только функции')
