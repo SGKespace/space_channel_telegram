@@ -14,9 +14,9 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
         response = requests.get(request_url, params=params)
         response.raise_for_status()
         urls = []
-        for item in response.json():
-            photo_name = item['image']
-            found_date = datetime.strptime(item['date'], '%Y-%m-%d  %H:%M:%S')
+        for current_response in response.json():
+            photo_name = current_response['image']
+            found_date = datetime.strptime(current_response['date'], '%Y-%m-%d  %H:%M:%S')
             formatted_date = f'{found_date.year}/{"{:02d}".format(found_date.month)}/{"{:02d}".format(found_date.day)}'
             urls.append(f'https://api.nasa.gov/EPIC/archive/natural/{formatted_date}/png/{photo_name}.png')
 
