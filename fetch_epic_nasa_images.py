@@ -33,4 +33,6 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
 
 
 if __name__ == '__main__':
-    print('Тут только функци')
+    load_dotenv()
+    nasa_token = os.environ["NASA_TOKEN"]
+    fetch_nasa_earth(nasa_token, 2)
