@@ -7,7 +7,7 @@ from datetime import datetime
 import common_helper_functions as chf
 
 
-def fetch_nasa_best_image(nasa_token, count):
+def fetch_nasa_best_images(nasa_token, count):
     request_url = 'https://api.nasa.gov/planetary/apod'
     params = {'api_key': nasa_token, 'count': count}
     try:
@@ -33,5 +33,5 @@ if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
     count = 2
-    fetch_nasa_best_image(nasa_token, count)
+    fetch_nasa_best_images(nasa_token, count)
 
