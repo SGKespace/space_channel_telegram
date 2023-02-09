@@ -35,11 +35,12 @@ SLEEP_TIME=3
 
 Python 3.xx и выше (должен быть уже установлен)
 
-requests 2.24.0
+requests == 2.24.0
 
-dotenv 0.21.1
+dotenv == 0.21.1
 
 python-telegram-bot == 13.0
+
 
 Можно установить командой  
 ``` 
