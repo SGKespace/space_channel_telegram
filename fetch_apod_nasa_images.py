@@ -32,5 +32,6 @@ def fetch_nasa_best_image(nasa_token, count):
 if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
-    fetch_nasa_best_image(nasa_token, 2)
+    count = 2
+    fetch_nasa_best_image(nasa_token, count)
 
