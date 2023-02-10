@@ -10,21 +10,20 @@ def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, о
     response = requests.get(api_url)
     response.raise_for_status()
     current_response = response.json()
+
     urls = current_response['links']['flickr']['original']
     basis_file_name = current_response['id'] + "_"
 
     if not urls:
-        print('Ссылки еще не выложили')
+        print('spacex: Ссылки еще не выложили')
         return
 
     for urls_number, url in enumerate(urls):
         path_to_save_files = Path(f'images/{basis_file_name + str(urls_number)}.jpeg')
         path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
         chf.download_files(url, path_to_save_files)
-
+    print('spacex: файлы загружены')
 
 
 if __name__ == '__main__':
-    # launche_id = '5eb87d42ffd86e000604b384'
     fetch_spacex_last_launch()
-
