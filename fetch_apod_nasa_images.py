@@ -13,8 +13,8 @@ def fetch_nasa_best_images(nasa_token, count):
     try:
         response = requests.get(request_url, params=params)
         response.raise_for_status()
-        for current_response in response.json():
-            url = current_response['hdurl']
+        for request in response.json():
+            url = request['hdurl']
             (file_name, file_extension) = chf.return_pars_name(url)
             path_to_save_files = Path(f'nasa/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
