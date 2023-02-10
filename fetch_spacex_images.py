@@ -12,7 +12,7 @@ def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, о
     current_response = response.json()
 
     urls = current_response['links']['flickr']['original']
-    basis_file_name = current_response['id'] + "_"
+    basis_file_name = f"{current_response['id']}_"
 
     if not urls:
         print('spacex: Ссылки еще не выложили')
