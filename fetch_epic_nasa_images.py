@@ -23,11 +23,10 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
             count = len(urls)
         for url in urls[:count]:
             (file_name, file_extension) = chf.return_pars_name(url)
-            path_to_save_files = Path(f'nasa/{file_name}{file_extension}')
+            path_to_save_files = Path(f'images/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
             chf.download_files(url, path_to_save_files, params)
         print('NASA EPIC: Файлы загружены.')
-
     except requests.exceptions.HTTPError:
         print('NASA EPIC: Вы ввели неверный токен или сформировался неверный запрос.')
 
@@ -35,5 +34,5 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
 if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
-    count = 2
+    count = 10
     fetch_nasa_earth(nasa_token, count)

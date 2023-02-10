@@ -16,7 +16,7 @@ def fetch_nasa_best_images(nasa_token, count):
         for request in response.json():
             url = request['hdurl']
             (file_name, file_extension) = chf.return_pars_name(url)
-            path_to_save_files = Path(f'nasa/{file_name}{file_extension}')
+            path_to_save_files = Path(f'images/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
             chf.download_files(url, path_to_save_files)
         print('NASA APOD: Файлы загружены.')
@@ -30,6 +30,6 @@ def fetch_nasa_best_images(nasa_token, count):
 if __name__ == '__main__':
     load_dotenv()
     nasa_token = os.environ["NASA_TOKEN"]
-    count = 2
+    count = 10
     fetch_nasa_best_images(nasa_token, count)
 
