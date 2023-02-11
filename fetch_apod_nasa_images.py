@@ -13,12 +13,12 @@ def fetch_nasa_best_images(nasa_token, count):
     try:
         response = requests.get(request_url, params=params)
         response.raise_for_status()
-        for request in response.json():
-            url = request['hdurl']
+        for place_details in response.json():
+            url = place_details['hdurl']
             (file_name, file_extension) = chf.return_pars_name(url)
             path_to_save_files = Path(f'images/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-            chf.download_files(url, path_to_save_files)
+            chf.download_file(url, path_to_save_files)
         print('NASA APOD: Файлы загружены.')
     except requests.exceptions.HTTPError:
         print('NASA APOD: Вы ввели неверный токен или сформировался неверный запрос.')

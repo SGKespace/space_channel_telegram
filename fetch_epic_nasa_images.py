@@ -14,9 +14,9 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
         response = requests.get(request_url, params=params)
         response.raise_for_status()
         urls = []
-        for request in response.json():
-            photo_name = request['image']
-            found_date = datetime.strptime(request['date'], '%Y-%m-%d  %H:%M:%S')
+        for place_details in response.json():
+            photo_name = place_details['image']
+            found_date = datetime.strptime(place_details['date'], '%Y-%m-%d  %H:%M:%S')
             formatted_date = f'{found_date.year}/{"{:02d}".format(found_date.month)}/{"{:02d}".format(found_date.day)}'
             urls.append(f'https://api.nasa.gov/EPIC/archive/natural/{formatted_date}/png/{photo_name}.png')
         if len(urls) < count:
@@ -25,7 +25,7 @@ def fetch_nasa_earth(nasa_token, count):  # типа красивые карти
             (file_name, file_extension) = chf.return_pars_name(url)
             path_to_save_files = Path(f'images/{file_name}{file_extension}')
             path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-            chf.download_files(url, path_to_save_files, params)
+            chf.download_file(url, path_to_save_files, params)
         print('NASA EPIC: Файлы загружены.')
     except requests.exceptions.HTTPError:
         print('NASA EPIC: Вы ввели неверный токен или сформировался неверный запрос.')

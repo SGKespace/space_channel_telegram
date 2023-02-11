@@ -19,9 +19,9 @@ def fetch_spacex_last_launch(launche_id: str = 'latest'):  # Весь код, о
         return
 
     for urls_number, url in enumerate(urls):
-        path_to_save_files = Path(f'images/{basis_file_name + str(urls_number)}.jpeg')
+        path_to_save_files = Path(f'images/{basis_file_name}{str(urls_number)}.jpeg')
         path_to_save_files.parent.mkdir(parents=True, exist_ok=True)
-        chf.download_files(url, path_to_save_files)
+        chf.download_file(url, path_to_save_files)
     print('spacex: файлы загружены')
 
 

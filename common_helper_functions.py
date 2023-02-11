@@ -9,7 +9,7 @@ def return_pars_name(url):
     return os.path.splitext(full_name)
 
 
-def download_files(url, path_to_save_files, params: str = ''):
+def download_file(url, path_to_save_files, params: str = ''):
     photo_response = requests.get(url, params=params)
     photo_response.raise_for_status()
     with path_to_save_files.open('wb') as file:
