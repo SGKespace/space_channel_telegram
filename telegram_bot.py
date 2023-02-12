@@ -7,8 +7,7 @@ import time
 
 
 def send_telegram_images(bot, chat_id, images_path):
-    for root, directory, files in os.walk(images_path):
-        file = random.choice(files)
+        file = random.choice(list(os.walk(images_path))[0][2])
         with open(f'{images_path}/{file}', 'rb') as fi:
             bot.sendPhoto(chat_id=chat_id, photo=fi)
 
